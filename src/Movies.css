@@ -1,0 +1,61 @@
+/* normal style */
+
+body{
+    padding: 5%;
+    background-color: #E9D5CA;
+    width: 100%;
+}
+
+h1{
+    font-family: 'Bebas Neue', cursive;
+}
+
+.movie{
+    text-align: center;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    border: 5px solid #4D4C7D;
+    background-color:#827397;
+    padding: 3%;  
+}
+
+
+.griditem{
+    text-align: center;
+}
+
+.rating{
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: red;
+}
+
+.image{
+    width: 250px;
+    height: 380px;
+    /* object-fit: cover; */
+    border-radius: 5%;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+
+.summary{
+    font-size: 1rem;
+    text-align: justify;
+    font-weight: bold;
+    font-family: 'Kalam', cursive;
+}
+
+.block{
+    padding-top: 10%;
+    display: flex;
+  } 
+
+
+
+
