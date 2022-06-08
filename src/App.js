@@ -1,10 +1,11 @@
 import React from 'react';
+import { useState } from 'react';
 import Movies from './Movies';
-import "./App.css"
+import "./App.css";
 
 function App() {
  
-const moviedata = 
+const movieList = 
 [
   {poster:"https://imgc.allpostersimages.com/img/posters/once-upon-a-time-in-hollywood_u-L-F9JLBB0.jpg",name:"ONCE UPON A TIME IN HOLLYWOOD",rating: 8.1,summary:"A faded television actor and his stunt double strive to achieve fame and success in the final years of Hollywood's Golden Age in 1969 Los Angeles."},
   {poster:"https://imgc.allpostersimages.com/img/posters/casablanca_u-L-F31XO90.jpg",name:"CASABLANCA",rating:8.9,summary:"A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco."},
@@ -18,12 +19,39 @@ const moviedata =
 
 ]
 
+const [movieData,setMovieData] = useState(movieList);
+const [poster,setPoster] = useState("");
+const [name,setName] = useState("");
+const [rating,setRating] = useState("");
+const [summary,setSummary] = useState("");
+
+
   return (
     <>
-    <h1 className='title'>movie's page</h1>
+    <h1 className='title' >FILM DIARY</h1>
+
+    <div className='inputdetails'>
+    <input onChange={(event) => setPoster(event.target.value)} placeholder="Poster"/>
+    <input onChange={(event) => setName(event.target.value)} placeholder="Name"/>
+    <input onChange={(event) => setRating(event.target.value)} placeholder="Rating"/>
+    <input onChange={(event) => setSummary(event.target.value)} placeholder="Summary"/>
+  
+    
+    <button className='myButton' onClick={()=>{
+      const newMovie = {
+        poster:poster,
+        name:name,
+        rating:rating,
+        summary:summary
+      };
+      console.log(newMovie)
+      setMovieData([...movieData,newMovie])
+    }} >ADD MOVIE</button>
+    </div>
+    
     <div className='grid'>
-   {moviedata.map(movie=>{
-   return <Movies poster={movie.poster} name={movie.name} rating={movie.rating} summary={movie.summary} />
+   {movieData.map((movie,index)=>{
+   return <Movies key={index} poster={movie.poster} name={movie.name} rating={movie.rating} summary={movie.summary} />
    }
      
    )}
