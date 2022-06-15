@@ -1,9 +1,8 @@
-/* normal style */
 
 body{
     padding: 5%;
-    background-color: #E9D5CA;
     width: 100%;
+    color: aliceblue;
 }
 
 h1{
@@ -17,8 +16,8 @@ h1{
     flex-direction: column;
     align-items: center;
     align-content: center;
-    border: 5px solid #4D4C7D;
-    background-color:#827397;
+    border: 5px solid black;
+    background-color:#226cb6;
     padding: 3%;  
 }
 
@@ -36,13 +35,12 @@ h1{
 .image{
     width: 250px;
     height: 380px;
-    /* object-fit: cover; */
     border-radius: 5%;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
-/* .image:hover{} */
+
 
 
 .summary{
@@ -58,5 +56,9 @@ h1{
   } 
 
 .like{
+    display: flex;
+}
+
+.footerblock{
     display: flex;
 }
