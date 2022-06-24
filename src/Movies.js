@@ -9,6 +9,12 @@ import "./Movies.css";
 import Badge from "@mui/material/Badge";
 // import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 // import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+// import Button from '@mui/material/Button';
+
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 
 function Movies(props) {
   // films with rating higher than 8.5 is set to green using conditional styling
@@ -24,19 +30,38 @@ function Movies(props) {
 
   const navigate = useNavigate();
 
+
   return (
     <div className="movie">
-      <img className="image" src={props.poster} alt="" />
+       <Card sx={{ maxWidth: 300,height : 'min-content' }} >
+
+       <CardMedia
+        component="img"
+        height="100%"
+        image={props.poster} 
+        alt="poster"
+      />
+      <CardContent>
+      <h1>{props.name}</h1>
       <div className="block">
-        <h1>{props.name}</h1>
         <p style={styles} className="rating">
           ⭐{props.rating}
         </p>
+        <IconButton
+          color="primary"
+          aria-label="movie-details"
+          onClick={() => navigate(`/Movies/${props.id}`)}
+        >
+          <InfoIcon />
+        </IconButton>
       </div>
       {/* <button onClick={()=>setToggle(!toggle)}>Toggle summary</button>
         {toggle ? <p  className="summary">{props.summary}</p> : null}  */}
       <p className="summary">{props.summary}</p>
-      <div className="footerblock">
+
+
+      </CardContent>
+      <CardActions>
         <div className="like">
 
           {/* <button onClick={() => setLike(like + 1)}>👍 {like} </button> */}
@@ -62,24 +87,23 @@ function Movies(props) {
           👎
           </Badge> 
         </IconButton>
+
+        {props.deleteButton}
+        {props.editButton}
         
         </div>
+        </CardActions>
         {/* the id is passed as a prop from the app.js file */}
         {/* material ui */}
-        <IconButton
-          color="error"
-          aria-label="movie-details"
-          onClick={() => navigate(`/Movies/${props.id}`)}
-        >
-          <InfoIcon />
-        </IconButton>
-      </div>
+        </Card>
     </div>
+    
   );
 }
 
 export default Movies;
 
 // toggle logic
-/* <button onClick={()=>setToggle(!toggle)}>Toggle summary</button>
-        {toggle ? <p  className="summary">{props.summary}</p> : null} */
+ /* <button onClick={()=>setToggle(!toggle)}>Toggle summary</button>
+
+        {toggle ? <p  className="summary">{props.summary}</p> : null}  */

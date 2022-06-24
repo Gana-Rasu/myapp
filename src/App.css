@@ -1,11 +1,13 @@
 .grid{
     display: grid;
     grid-template-columns: auto auto auto;
-    gap: 40px;
+    /* gap: 40px; */
+    column-gap: 10%;
+    padding: 2%;
 }
 
 
-.inputdetails{
+/* .inputdetails{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -16,5 +18,5 @@
 
 input{
     margin: 1%;
-}
+} */
 

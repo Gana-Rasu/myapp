@@ -1,7 +1,8 @@
 .moviedetails-block{
     display: flex;
     padding: 2%;
-}
-.moviedetails{
-    color: black;
+    flex-direction: column;
+    font-family: 'Bebas Neue', cursive;
+    font-size: large;
+    align-items: flex-start;
 }
