@@ -9,6 +9,7 @@ import "./Addmovie.css";
 import {useFormik} from "formik";
 import * as yup from "yup";
 
+
 const formValidationSchema = yup.object({
   poster : yup.string().required(),
   name : yup.string().required(),
@@ -26,21 +27,8 @@ function Addmovie() {
 
   const navigate = useNavigate();
 
- 
-  const formik = useFormik({
-    initialValues: {
-      poster:"",
-      name: "",
-      rating: "",
-      summary: "",
-      trailer: "",
-    },
-    validationSchema : formValidationSchema,
-    onSubmit: (newMovie)=>{
-      console.log(newMovie);
-      addmovie(newMovie);
-    },
-  });
+
+
 
   const addmovie = (newMovie) => {
     // const newMovie = {
@@ -56,8 +44,29 @@ function Addmovie() {
       method: "POST",
       body: JSON.stringify(newMovie),
       headers: { "Content-Type": "application/json" },
-    }).then(() => navigate("/app"));
+    }).then(() => navigate("/app"))
+    .catch((e) => console.log("ERROR"));
   };
+
+
+  
+  const formik = useFormik({
+    initialValues: {
+      poster:"",
+      name: "",
+      rating: "",
+      summary: "",
+      trailer: "",
+    },
+    validationSchema : formValidationSchema,
+    onSubmit: (newMovie)=>{
+      console.log(newMovie);
+      addmovie(newMovie);
+    },
+  });
+ 
+
+
 
   return (
     <>
@@ -115,7 +124,7 @@ function Addmovie() {
         />
         {formik.touched.trailer && formik.errors.trailer ? formik.errors.trailer : ""}
     </form>
-        <Button type="submit" variant="outlined" className="myButton">
+        <Button type="submit" variant="outlined" onClick={()=>{addmovie()}} className="myButton">
           ADD MOVIE
         </Button>
   
@@ -125,3 +134,5 @@ function Addmovie() {
 }
 
 export default Addmovie;
+
+
