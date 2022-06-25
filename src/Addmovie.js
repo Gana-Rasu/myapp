@@ -10,10 +10,10 @@ import {useFormik} from "formik";
 import * as yup from "yup";
 
 
-const formValidationSchema = yup.object({
+const movieValidationSchema = yup.object({
   poster : yup.string().required(),
   name : yup.string().required(),
-  rating : yup.string().required(),
+  rating : yup.number().required(),
   summary : yup.string().required(),
   trailer : yup.string().required(),
 })
@@ -28,6 +28,20 @@ function Addmovie() {
   const navigate = useNavigate();
 
 
+  const formik = useFormik({
+    initialValues: {
+      poster:"",
+      name: "",
+      rating: "",
+      summary: "",
+      trailer: "",
+    },
+    validationSchema : movieValidationSchema,
+    onSubmit: (newMovie)=>{
+      console.log("onSubmit",newMovie);
+      addmovie(newMovie);
+    },
+  });
 
 
   const addmovie = (newMovie) => {
@@ -49,27 +63,7 @@ function Addmovie() {
   };
 
 
-  
-  const formik = useFormik({
-    initialValues: {
-      poster:"",
-      name: "",
-      rating: "",
-      summary: "",
-      trailer: "",
-    },
-    validationSchema : formValidationSchema,
-    onSubmit: (newMovie)=>{
-      console.log(newMovie);
-      addmovie(newMovie);
-    },
-  });
- 
-
-
-
   return (
-    <>
     <div className="addmovieblock">
     <form onSubmit={formik.handleSubmit} className="inputdetails">
         <TextField
@@ -80,8 +74,11 @@ function Addmovie() {
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={formik.touched.name && formik.errors.name}
+          helperText= {formik.touched.name && formik.errors.name ? formik.errors.name : ""}
+          // helperText= {formik.touched.name && formik.errors.name } better short
         />
-        {formik.touched.name && formik.errors.name ? formik.errors.name : ""}
+       
         <TextField
           // onChange={(event) => setPoster(event.target.value)}
           label="Poster"
@@ -90,8 +87,11 @@ function Addmovie() {
           value={formik.values.poster}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={formik.touched.poster && formik.errors.poster}
+          helperText= {formik.touched.poster && formik.errors.poster ? formik.errors.poster : ""}
         />
-        {formik.touched.poster && formik.errors.poster ? formik.errors.poster : ""}
+   
+        
         <TextField
           // onChange={(event) => setRating(event.target.value)}
           label="Rating"
@@ -100,8 +100,10 @@ function Addmovie() {
           value={formik.values.rating}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={formik.touched.rating && formik.errors.rating}
+          helperText= {formik.touched.rating && formik.errors.rating ? formik.errors.rating : ""}
         />
-        {formik.touched.rating && formik.errors.rating ? formik.errors.rating : ""}
+      
         <TextField
           // onChange={(event) => setSummary(event.target.value)}
           label="summary"
@@ -110,8 +112,10 @@ function Addmovie() {
           value={formik.values.summary}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={formik.touched.summary && formik.errors.summary}
+          helperText= {formik.touched.summary && formik.errors.summary ? formik.errors.summary : ""}
         />
-        {formik.touched.summary && formik.errors.summary ? formik.errors.summary : ""}
+      
 
         <TextField
           // onChange={(event) => setTrailer(event.target.value)}
@@ -121,18 +125,22 @@ function Addmovie() {
           value={formik.values.trailer}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={formik.touched.trailer && formik.errors.trailer}
+          helperText= {formik.touched.trailer && formik.errors.trailer ? formik.errors.trailer : ""}
         />
         {formik.touched.trailer && formik.errors.trailer ? formik.errors.trailer : ""}
-    </form>
-        <Button type="submit" variant="outlined" onClick={()=>{addmovie()}} className="myButton">
+
+        <Button type="submit" variant="outlined"  className="myButton">
           ADD MOVIE
         </Button>
+    </form>
+        
   
     </div>
-    </>
   );
 }
 
 export default Addmovie;
 
 
+ 

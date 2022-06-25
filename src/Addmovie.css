@@ -5,8 +5,13 @@
 }
 
 
-.addmovieblock{
+/* .addmovieblock{
     display: flex;
     flex-direction: column;
     align-items: center;
+} */
+
+
+.myButton{
+    margin: 5%;
 }
