@@ -61,8 +61,8 @@ function Movies(props) {
 
 
       </CardContent>
-      <CardActions>
-        <div className="like">
+      <CardActions style={{display:"flex",justifyContent: "space-evenly"}}>
+        <div className="cardfooter">
 
           {/* <button onClick={() => setLike(like + 1)}>👍 {like} </button> */}
         <IconButton

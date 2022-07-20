@@ -6,6 +6,7 @@ import './Moviedetails.css';
 // import {movieList} from './staticdata.js';
 import Button from '@mui/material/Button';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { API } from "./global";
 
 function Moviedetails(props) {
 
@@ -21,7 +22,7 @@ function Moviedetails(props) {
 const [movie, setMovie] = useState({});
 
   const getmovie = ()=>{
-    fetch(`https://62ac315ebd0e5d29af1cc1c8.mockapi.io/movies/${movieId}`)
+    fetch(`${API}/movies/${movieId}`)
     .then((data)=>data.json())
     .then((result)=>{setMovie(result)
 

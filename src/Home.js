@@ -15,6 +15,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import Mainpage from "./Mainpage";
 
 function Home() {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ function Home() {
   });
 
   return (
-    <>
+    <div className="Header">
       <ThemeProvider theme={theme}>
         <Paper elevation={5} style={{ minHeight: "100vh" }}>
           <AppBar position="static">
@@ -50,6 +51,7 @@ function Home() {
                   TIC TAC TOE
                 </Button>
                 <Button
+                style={{marginLeft : "auto"}}
                   startIcon={
                     mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />
                   }
@@ -76,7 +78,7 @@ function Home() {
           </li>
         </ul> */}
             <Routes>
-              <Route path="/" />
+              <Route path="/" element={<Mainpage/>} />
               {/* id is from the Movies.js file */}
               <Route path="/Movies/:movieId" element={<Moviedetails />} />
               <Route path="/app" element={<App />} />
@@ -91,7 +93,7 @@ function Home() {
         </Paper>
       </ThemeProvider>
 
-    </>
+    </div>
   );
 }
 

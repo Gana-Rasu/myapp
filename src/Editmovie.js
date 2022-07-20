@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import "./Addmovie.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { API } from "./global";
 // import {movieList} from './staticdata.js';
 
 function Editmovie() {
@@ -15,7 +16,7 @@ function Editmovie() {
   const [movie, setMovie] = useState(null);
 
   const getmovie = () => {
-    fetch(`https://62ac315ebd0e5d29af1cc1c8.mockapi.io/movies/${id}`)
+    fetch(`${API}/movies/${id}`)
       .then((data) => data.json())
       .then((result) => {
         setMovie(result);
@@ -48,7 +49,7 @@ function Editmovieform({ movie }) {
     };
     console.log(updateMovie);
     // setMovieData([...movieData,newMovie])
-    fetch(`https://62ac315ebd0e5d29af1cc1c8.mockapi.io/movies/${movie.id}`, {
+    fetch(`${API}/movies/${movie.id}`, {
       method: "PUT",
       body: JSON.stringify(updateMovie),
       headers: { "Content-Type": "application/json" },

@@ -1,5 +1,4 @@
 
-
 h1{
     font-family: 'Bebas Neue', cursive;
     text-align: center;
@@ -16,4 +15,8 @@ h1{
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+}
+
+.cardfooter{
+    display: flex;
 }

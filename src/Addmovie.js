@@ -8,6 +8,7 @@ import "./Addmovie.css";
 
 import {useFormik} from "formik";
 import * as yup from "yup";
+import { API } from "./global";
 
 
 const movieValidationSchema = yup.object({
@@ -54,7 +55,7 @@ function Addmovie() {
     // };
     // console.log(newMovie);
     // setMovieData([...movieData,newMovie])
-    fetch(`https://62ac315ebd0e5d29af1cc1c8.mockapi.io/movies`, {
+    fetch(`${API}/movies`, {
       method: "POST",
       body: JSON.stringify(newMovie),
       headers: { "Content-Type": "application/json" },
