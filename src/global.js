@@ -7,12 +7,3 @@ export const API = `https://gana-node-app.herokuapp.com`;
 // node wont allow the link to establish a connection easily so, we need to allow permission using cors
 
 
-
-// light toggle button 
-// home page design
-
-
-
-// 1) change movie id to _id
-// import { ObjectId } from "mongodb";
-// _id = 

@@ -6,54 +6,36 @@ import "./App.css";
 // import TextField from "@mui/material/TextField";
 // import {movieList} from './staticdata.js';
 // import Button from "@mui/material/Button";
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { API } from "./global";
 // import axios from "axios";
-
-
 
 function App() {
   const [movieData, setMovieData] = useState([]);
 
-  const getmovies = ()=>{
+  const getmovies = () => {
     fetch(`${API}/movies`)
-    .then((data)=>data.json())
-    .then((result)=>{setMovieData(result)
-    })
+      .then((data) => data.json())
+      .then((result) => {
+        setMovieData(result);
+      });
+  };
 
-    // axios method
-    // var config = {
-    //   method: 'get',
-    //   url: 'https://gana-node-app.herokuapp.com/movies',
-    //   headers: {"Access-Control-Allow-Origin" :"*" }
-    // };
-    
-    // axios(config)
-    // .then(function (response) {
-    //   setMovieData(response.data);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-    
-  }
+  useEffect(() => getmovies(), []);
 
-  useEffect(()=> getmovies(),[])
-
-  const deletemovie = (id)=>{
-    fetch(`${API}/movies/${id}`,{
-      method:"DELETE",
-    })
-    .then(()=>getmovies()); 
-  }; 
+  const deletemovie = (id) => {
+    fetch(`${API}/movies/${id}`, {
+      method: "DELETE",
+    }).then(() => getmovies());
+  };
 
   // const [poster, setPoster] = useState("");
   // const [name, setName] = useState("");
   // const [rating, setRating] = useState("");
   // const [summary, setSummary] = useState("");
-  
+
   const navigate = useNavigate();
 
   return (
@@ -100,13 +82,9 @@ function App() {
 
       <div className="grid">
         {movieData.map((movie, index) => {
-         
-         
-        
-
           return (
             <Movies
-            //  _id is used to cnnect with the heroku and mongo db id instead of local id
+              //  _id is used to cnnect with the heroku and mongo db id instead of local id
               id={movie._id}
               key={movie._id}
               poster={movie.poster}
@@ -114,18 +92,28 @@ function App() {
               rating={movie.rating}
               summary={movie.summary}
               trailer={movie.trailer}
-              deleteButton={<IconButton style={{marginLeft : "auto"}} color="error" onClick={()=>{deletemovie(movie._id)}}  aria-label="delete">
-              <DeleteIcon />
-            </IconButton>}
-              
-              editButton={ <IconButton onClick={()=>navigate(`/movies/edit/${movie._id}`)} aria-label="edit">
-              < EditIcon />
-            </IconButton>}
-             
-             
+              deleteButton={
+                <IconButton
+                  style={{ marginLeft: "auto" }}
+                  color="error"
+                  onClick={() => {
+                    deletemovie(movie._id);
+                  }}
+                  aria-label="delete"
+                >
+                  <DeleteIcon />
+                </IconButton>
+              }
+              editButton={
+                <IconButton
+                  onClick={() => navigate(`/movies/edit/${movie._id}`)}
+                  aria-label="edit"
+                >
+                  <EditIcon />
+                </IconButton>
+              }
             />
           );
-          
         })}
       </div>
     </>

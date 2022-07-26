@@ -16,16 +16,17 @@ import Paper from "@mui/material/Paper";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Mainpage from "./Mainpage";
+import { IconButton } from "@mui/material";
 
 function Home() {
   const navigate = useNavigate();
 
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState(true);
 
   const theme = createTheme({
     palette: {
-      mode: mode,
-    },
+      mode: mode ? 'dark' : 'light'
+    }
   });
 
   return (
@@ -50,7 +51,7 @@ function Home() {
                 >
                   TIC TAC TOE
                 </Button>
-                <Button
+                {/* <Button
                 style={{marginLeft : "auto"}}
                   startIcon={
                     mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />
@@ -59,7 +60,14 @@ function Home() {
                   variant="inherit"
                 >
                   {mode === "light" ? "dark" : "light"} MODE
-                </Button>
+                </Button> */}
+                <IconButton
+      onClick={()=>mode? setMode(false) : setMode(true)}
+      color="inherit"
+      sx={{marginLeft:"auto"}}
+      >
+        {mode? <Brightness7Icon />:<Brightness4Icon /> }
+      </IconButton>
               </Typography>
             </Toolbar>
           </AppBar>
