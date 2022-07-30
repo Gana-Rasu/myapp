@@ -18,7 +18,7 @@ function App() {
   const getmovies = () => {
     fetch(`${API}/movies`)
       .then((data) => data.json())
-      .then((result) => {
+      .then((result) => { 
         setMovieData(result);
       });
   };
